@@ -475,7 +475,7 @@
     <section id="store-categories" class="store-categories">
         <div class="container">
             <div class="section-header">
-                <h2>Tienda Online - Envíos a Cuba</h2>
+                <h2>USA para Cuba</h2>
                 <p>Compra en las mejores tiendas online y envíalo a Cuba</p>
             </div>
             
@@ -723,77 +723,7 @@
         </div>
     </section>
 
-    <!-- Store Section -->
-    <section id="store" class="store">
-        <div class="container">
-            <div class="section-header">
-                <h2>Nuestra Tienda Cubalink23</h2>
-                <p>Compra en las mejores tiendas online y envíalo a Cuba</p>
-            </div>
-            
-            <div class="store-grid">
-                <div class="store-card">
-                    <div class="store-logo amazon">
-                        <i class="fab fa-amazon"></i>
-                    </div>
-                    <h3>Amazon</h3>
-                    <p>Electrónicos, libros, ropa y mucho más</p>
-                    <a href="#" class="store-btn">
-                        Comprar en Amazon
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                
-                <div class="store-card">
-                    <div class="store-logo ebay">
-                        <i class="fab fa-ebay"></i>
-                    </div>
-                    <h3>eBay</h3>
-                    <p>Productos únicos y ofertas especiales</p>
-                    <a href="#" class="store-btn">
-                        Comprar en eBay
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                
-                <div class="store-card">
-                    <div class="store-logo walmart">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <h3>Walmart</h3>
-                    <p>Todo para el hogar y la familia</p>
-                    <a href="#" class="store-btn">
-                        Comprar en Walmart
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                
-                <div class="store-card">
-                    <div class="store-logo home-depot">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Home Depot</h3>
-                    <p>Herramientas y materiales de construcción</p>
-                    <a href="#" class="store-btn">
-                        Comprar en Home Depot
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-                
-                <div class="store-card">
-                    <div class="store-logo shein">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3>Shein</h3>
-                    <p>Moda y accesorios al mejor precio</p>
-                    <a href="#" class="store-btn">
-                        Comprar en Shein
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- App Download Section -->
     <section class="app-download" style="background: linear-gradient(135deg, #fbbf24, #f59e0b); padding: 80px 0;">
@@ -992,6 +922,52 @@
             </div>
         </div>
     </footer>
+
+    <!-- Location Selection Modal -->
+    <div id="locationModal" class="location-modal">
+        <div class="location-modal-content">
+            <div class="location-modal-header">
+                <h3>Lugar de entrega</h3>
+                <p>Para asegurar un servicio eficiente, por favor elige la provincia y municipio donde deseas que entreguemos tu envío.</p>
+            </div>
+            
+            <div class="location-form">
+                <div class="location-field">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="provinceSelect" required>
+                        <option value="">Seleccione Provincia</option>
+                        <option value="pinar-del-rio">Pinar del Río</option>
+                        <option value="artemisa">Artemisa</option>
+                        <option value="mayabeque">Mayabeque</option>
+                        <option value="la-habana">La Habana</option>
+                        <option value="matanzas">Matanzas</option>
+                        <option value="villa-clara">Villa Clara</option>
+                        <option value="cienfuegos">Cienfuegos</option>
+                        <option value="sancti-spiritus">Sancti Spíritus</option>
+                        <option value="ciego-de-avila">Ciego de Ávila</option>
+                        <option value="camaguey">Camagüey</option>
+                        <option value="las-tunas">Las Tunas</option>
+                        <option value="holguin">Holguín</option>
+                        <option value="granma">Granma</option>
+                        <option value="santiago-de-cuba">Santiago de Cuba</option>
+                        <option value="guantanamo">Guantánamo</option>
+                        <option value="isla-de-la-juventud">Isla de la Juventud</option>
+                    </select>
+                </div>
+                
+                <div class="location-field">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="municipalitySelect" required disabled>
+                        <option value="">Seleccione Municipio</option>
+                    </select>
+                </div>
+                
+                <button id="updateLocationBtn" class="update-location-btn" disabled>
+                    ACTUALIZAR
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- WhatsApp Float Button -->
     <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">

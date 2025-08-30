@@ -15,6 +15,7 @@ function initializeApp() {
     setupMobileMenu();
     checkAuthStatus();
     setupFormSubmissions();
+    setupLocationModal();
 }
 
 // ===== NAVIGATION SETUP =====
@@ -426,6 +427,134 @@ async function searchCars(searchData) {
     }
 }
 
+// ===== LOCATION MODAL DATA =====
+const cubanProvinces = {
+    'pinar-del-rio': {
+        name: 'Pinar del Río',
+        municipalities: ['Pinar del Río', 'Consolación del Sur', 'San Juan y Martínez', 'San Luis', 'Mantua', 'Minas de Matahambre', 'Viñales', 'La Palma', 'Los Palacios', 'Sandino', 'Guane', 'Candelaria', 'Bahía Honda', 'Artemisa', 'Guanajay', 'Mariel', 'Bauta', 'San Antonio de los Baños', 'Güira de Melena', 'Alquízar', 'Caimito', 'San Cristóbal']
+    },
+    'artemisa': {
+        name: 'Artemisa',
+        municipalities: ['Artemisa', 'Bahía Honda', 'Candelaria', 'Mariel', 'Guanajay', 'Bauta', 'San Antonio de los Baños', 'Güira de Melena', 'Alquízar', 'Caimito', 'San Cristóbal']
+    },
+    'mayabeque': {
+        name: 'Mayabeque',
+        municipalities: ['San José de las Lajas', 'Batabanó', 'Bejucal', 'Güines', 'Jaruco', 'Madruga', 'Melena del Sur', 'Nueva Paz', 'Quivicán', 'San Nicolás de Bari', 'Santa Cruz del Norte']
+    },
+    'la-habana': {
+        name: 'La Habana',
+        municipalities: ['Playa', 'Plaza de la Revolución', 'Centro Habana', 'La Habana Vieja', 'Regla', 'La Habana del Este', 'Guanabacoa', 'San Miguel del Padrón', 'Diez de Octubre', 'Cerro', 'Marianao', 'La Lisa', 'Boyeros', 'Arroyo Naranjo', 'Cotorro']
+    },
+    'matanzas': {
+        name: 'Matanzas',
+        municipalities: ['Matanzas', 'Cárdenas', 'Colón', 'Perico', 'Jovellanos', 'Pedro Betancourt', 'Limonar', 'Unión de Reyes', 'Ciénaga de Zapata', 'Jagüey Grande', 'Calimete', 'Los Arabos', 'Martí', 'Varadero']
+    },
+    'villa-clara': {
+        name: 'Villa Clara',
+        municipalities: ['Santa Clara', 'Sagua la Grande', 'Placetas', 'Camajuaní', 'Caibarién', 'Remedios', 'Quemado de Güines', 'Encrucijada', 'Cifuentes', 'Santo Domingo', 'Ranchuelo', 'Manicaragua', 'Corralillo']
+    },
+    'cienfuegos': {
+        name: 'Cienfuegos',
+        municipalities: ['Cienfuegos', 'Aguada de Pasajeros', 'Rodas', 'Palmira', 'Lajas', 'Cruces', 'Cumanayagua', 'Abreus']
+    },
+    'sancti-spiritus': {
+        name: 'Sancti Spíritus',
+        municipalities: ['Sancti Spíritus', 'Trinidad', 'Cabaiguán', 'Fomento', 'Yaguajay', 'Jatibonico', 'La Sierpe']
+    },
+    'ciego-de-avila': {
+        name: 'Ciego de Ávila',
+        municipalities: ['Ciego de Ávila', 'Morón', 'Chambas', 'Majagua', 'Ciro Redondo', 'Florencia', 'Venezuela', 'Baraguá', 'Primero de Enero', 'Bolivia']
+    },
+    'camaguey': {
+        name: 'Camagüey',
+        municipalities: ['Camagüey', 'Florida', 'Vertientes', 'Esmeralda', 'Sierra de Cubitas', 'Minas', 'Najasa', 'Guáimaro', 'Carlos Manuel de Céspedes', 'Sibanicú', 'Nuevitas', 'Santa Cruz del Sur']
+    },
+    'las-tunas': {
+        name: 'Las Tunas',
+        municipalities: ['Las Tunas', 'Puerto Padre', 'Jesús Menéndez', 'Majibacoa', 'Jobabo', 'Colombia', 'Amancio']
+    },
+    'holguin': {
+        name: 'Holguín',
+        municipalities: ['Holguín', 'Banes', 'Antilla', 'Báguanos', 'Cacocum', 'Calixto García', 'Cueto', 'Frank País', 'Gibara', 'Mayarí', 'Moa', 'Rafael Freyre', 'Sagua de Tánamo', 'Urbano Noris']
+    },
+    'granma': {
+        name: 'Granma',
+        municipalities: ['Bayamo', 'Manzanillo', 'Campechuela', 'Media Luna', 'Niquero', 'Pilón', 'Bartolomé Masó', 'Buey Arriba', 'Guisa', 'Jiguaní', 'Yara']
+    },
+    'santiago-de-cuba': {
+        name: 'Santiago de Cuba',
+        municipalities: ['Santiago de Cuba', 'Palma Soriano', 'San Luis', 'Songo-La Maya', 'El Cobre', 'Guamá', 'El Salvador', 'Mella', 'Tercer Frente', 'Contramaestre']
+    },
+    'guantanamo': {
+        name: 'Guantánamo',
+        municipalities: ['Guantánamo', 'Baracoa', 'Imías', 'Maisí', 'El Salvador', 'Yateras', 'San Antonio del Sur', 'Manuel Tames', 'Caimanera', 'Niceto Pérez']
+    },
+    'isla-de-la-juventud': {
+        name: 'Isla de la Juventud',
+        municipalities: ['Nueva Gerona', 'Isla de la Juventud']
+    }
+};
+
+// ===== LOCATION MODAL FUNCTIONALITY =====
+function setupLocationModal() {
+    const locationModal = document.getElementById('locationModal');
+    const provinceSelect = document.getElementById('provinceSelect');
+    const municipalitySelect = document.getElementById('municipalitySelect');
+    const updateLocationBtn = document.getElementById('updateLocationBtn');
+
+    // Check if location is already set
+    const savedProvince = localStorage.getItem('selectedProvince');
+    const savedMunicipality = localStorage.getItem('selectedMunicipality');
+    
+    if (!savedProvince || !savedMunicipality) {
+        // Show modal on page load
+        locationModal.style.display = 'flex';
+    }
+
+    // Handle province selection
+    provinceSelect.addEventListener('change', function() {
+        const selectedProvince = this.value;
+        municipalitySelect.innerHTML = '<option value="">Seleccione Municipio</option>';
+        municipalitySelect.disabled = true;
+        updateLocationBtn.disabled = true;
+
+        if (selectedProvince && cubanProvinces[selectedProvince]) {
+            municipalitySelect.disabled = false;
+            cubanProvinces[selectedProvince].municipalities.forEach(municipality => {
+                const option = document.createElement('option');
+                option.value = municipality.toLowerCase().replace(/\s+/g, '-');
+                option.textContent = municipality;
+                municipalitySelect.appendChild(option);
+            });
+        }
+    });
+
+    // Handle municipality selection
+    municipalitySelect.addEventListener('change', function() {
+        updateLocationBtn.disabled = !this.value;
+    });
+
+    // Handle update button
+    updateLocationBtn.addEventListener('click', function() {
+        const selectedProvince = provinceSelect.value;
+        const selectedMunicipality = municipalitySelect.value;
+        
+        if (selectedProvince && selectedMunicipality) {
+            // Store location in localStorage
+            localStorage.setItem('selectedProvince', selectedProvince);
+            localStorage.setItem('selectedMunicipality', selectedMunicipality);
+            localStorage.setItem('selectedProvinceName', cubanProvinces[selectedProvince].name);
+            localStorage.setItem('selectedMunicipalityName', municipalitySelect.options[municipalitySelect.selectedIndex].text);
+            
+            // Hide modal
+            locationModal.style.display = 'none';
+            
+            // Show success message
+            showNotification('Ubicación actualizada correctamente', 'success');
+        }
+    });
+}
+
 // ===== EXPORT FUNCTIONS FOR GLOBAL USE =====
 window.Cubalink23 = {
     login,
@@ -434,5 +563,6 @@ window.Cubalink23 = {
     showNotification,
     searchFlights,
     searchHotels,
-    searchCars
+    searchCars,
+    setupLocationModal
 };
