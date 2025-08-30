@@ -1,40 +1,166 @@
-// Cubalink23 Web Application
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    navToggle.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
-    });
+// ===== GLOBAL VARIABLES =====
+let isUserLoggedIn = false;
+let currentUser = null;
 
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+// ===== DOM CONTENT LOADED =====
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+});
+
+// ===== INITIALIZE APP =====
+function initializeApp() {
+    setupNavigation();
+    setupSearchTabs();
+    setupSmoothScrolling();
+    setupMobileMenu();
+    checkAuthStatus();
+    setupFormSubmissions();
+}
+
+// ===== NAVIGATION SETUP =====
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
                 });
             }
         });
     });
+}
 
-    // Header scroll effect
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+// ===== SEARCH TABS FUNCTIONALITY =====
+function setupSearchTabs() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const searchForms = document.querySelectorAll('.search-form');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and forms
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            searchForms.forEach(form => form.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding form
+            this.classList.add('active');
+            const targetForm = document.getElementById(targetTab);
+            if (targetForm) {
+                targetForm.classList.add('active');
+            }
+        });
     });
+}
 
-    // Form submissions
+// ===== SMOOTH SCROLLING =====
+function setupSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ===== MOBILE MENU =====
+function setupMobileMenu() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    }
+}
+
+// ===== AUTHENTICATION FUNCTIONS =====
+function checkAuthStatus() {
+    // Check if user is logged in (you can implement your own logic here)
+    const token = localStorage.getItem('cubalink23_token');
+    
+    if (token) {
+        isUserLoggedIn = true;
+        updateAuthUI();
+    } else {
+        isUserLoggedIn = false;
+        updateAuthUI();
+    }
+}
+
+function updateAuthUI() {
+    const loginBtn = document.getElementById('loginBtn');
+    const accountBtn = document.getElementById('accountBtn');
+    
+    if (isUserLoggedIn) {
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (accountBtn) accountBtn.style.display = 'flex';
+    } else {
+        if (loginBtn) loginBtn.style.display = 'flex';
+        if (accountBtn) accountBtn.style.display = 'none';
+    }
+}
+
+function login(email, password) {
+    // Implement your login logic here
+    // This is a placeholder for the actual authentication
+    console.log('Logging in with:', email, password);
+    
+    // Simulate successful login
+    localStorage.setItem('cubalink23_token', 'dummy_token');
+    isUserLoggedIn = true;
+    updateAuthUI();
+    
+    // Redirect to account page or show success message
+    window.location.href = 'account.html';
+}
+
+function logout() {
+    localStorage.removeItem('cubalink23_token');
+    isUserLoggedIn = false;
+    updateAuthUI();
+    
+    // Redirect to home page
+    window.location.href = 'index.html';
+}
+
+// ===== FORM SUBMISSIONS =====
+function setupFormSubmissions() {
+    // Contact form
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -42,106 +168,79 @@ document.addEventListener('DOMContentLoaded', function() {
             handleContactForm(this);
         });
     }
-
-    const flightSearch = document.querySelector('.flight-search');
-    if (flightSearch) {
-        flightSearch.addEventListener('submit', function(e) {
+    
+    // Travel search forms
+    const flightForm = document.querySelector('.flight-form');
+    if (flightForm) {
+        flightForm.addEventListener('submit', function(e) {
             e.preventDefault();
             handleFlightSearch(this);
         });
     }
-
-    const hotelSearch = document.querySelector('.hotel-search');
-    if (hotelSearch) {
-        hotelSearch.addEventListener('submit', function(e) {
+    
+    const hotelForm = document.querySelector('.hotel-form');
+    if (hotelForm) {
+        hotelForm.addEventListener('submit', function(e) {
             e.preventDefault();
             handleHotelSearch(this);
         });
     }
-
-    // Service card animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+    
+    const carForm = document.querySelector('.car-form');
+    if (carForm) {
+        carForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleCarSearch(this);
         });
-    }, observerOptions);
+    }
+}
 
-    document.querySelectorAll('.service-card, .store-card, .travel-card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(card);
-    });
-
-    // Initialize tooltips and popovers
-    initializeTooltips();
-});
-
-// Contact form handler
 function handleContactForm(form) {
     const formData = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const data = Object.fromEntries(formData);
     
-    // Show loading state
-    submitBtn.innerHTML = '<span class="loading"></span> Enviando...';
-    submitBtn.disabled = true;
-
-    // Simulate API call (replace with actual API endpoint)
-    setTimeout(() => {
-        showNotification('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.', 'success');
-        form.reset();
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 2000);
+    console.log('Contact form submitted:', data);
+    
+    // Show success message
+    showNotification('Mensaje enviado correctamente. Te contactaremos pronto.', 'success');
+    
+    // Reset form
+    form.reset();
 }
 
-// Flight search handler
 function handleFlightSearch(form) {
     const formData = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const data = Object.fromEntries(formData);
     
-    submitBtn.innerHTML = '<span class="loading"></span> Buscando...';
-    submitBtn.disabled = true;
-
-    // Simulate flight search (replace with actual API call to your backend)
-    setTimeout(() => {
-        showNotification('Búsqueda completada. Redirigiendo a resultados...', 'info');
-        // Here you would redirect to flight results page or show results modal
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 3000);
+    console.log('Flight search:', data);
+    
+    // Here you would typically make an API call to search flights
+    showNotification('Buscando vuelos...', 'info');
 }
 
-// Hotel search handler
 function handleHotelSearch(form) {
     const formData = new FormData(form);
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
+    const data = Object.fromEntries(formData);
     
-    submitBtn.innerHTML = '<span class="loading"></span> Buscando...';
-    submitBtn.disabled = true;
-
-    // Simulate hotel search (replace with actual API call to your backend)
-    setTimeout(() => {
-        showNotification('Búsqueda completada. Redirigiendo a resultados...', 'info');
-        // Here you would redirect to hotel results page or show results modal
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    }, 3000);
+    console.log('Hotel search:', data);
+    
+    // Here you would typically make an API call to search hotels
+    showNotification('Buscando hoteles...', 'info');
 }
 
-// Notification system
+function handleCarSearch(form) {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    console.log('Car search:', data);
+    
+    // Here you would typically make an API call to search cars
+    showNotification('Buscando autos disponibles...', 'info');
+}
+
+// ===== NOTIFICATION SYSTEM =====
 function showNotification(message, type = 'info') {
+    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -156,257 +255,184 @@ function showNotification(message, type = 'info') {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#4CAF50' : type === 'error' ? '#f44336' : '#2196F3'};
+        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
         color: white;
         padding: 1rem 1.5rem;
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
         max-width: 400px;
+        animation: slideIn 0.3s ease;
     `;
     
+    // Add to page
     document.body.appendChild(notification);
     
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', function() {
+        notification.remove();
+    });
     
     // Auto remove after 5 seconds
     setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 5000);
-    
-    // Close button
-    notification.querySelector('.notification-close').addEventListener('click', () => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    });
-}
-
-// Initialize tooltips
-function initializeTooltips() {
-    // Add tooltip functionality to service buttons
-    document.querySelectorAll('.service-btn, .store-btn').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            const tooltip = document.createElement('div');
-            tooltip.className = 'tooltip';
-            tooltip.textContent = this.textContent;
-            tooltip.style.cssText = `
-                position: absolute;
-                background: #333;
-                color: white;
-                padding: 0.5rem;
-                border-radius: 4px;
-                font-size: 0.8rem;
-                z-index: 1000;
-                pointer-events: none;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `;
-            
-            document.body.appendChild(tooltip);
-            
-            const rect = this.getBoundingClientRect();
-            tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
-            tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
-            
-            setTimeout(() => {
-                tooltip.style.opacity = '1';
-            }, 100);
-            
-            this.tooltip = tooltip;
-        });
-        
-        btn.addEventListener('mouseleave', function() {
-            if (this.tooltip) {
-                this.tooltip.style.opacity = '0';
-                setTimeout(() => {
-                    if (this.tooltip && this.tooltip.parentNode) {
-                        this.tooltip.parentNode.removeChild(this.tooltip);
-                    }
-                }, 300);
-            }
-        });
-    });
-}
-
-// API Integration Functions (to be connected to your backend)
-function connectToBackend() {
-    // This function will handle the connection to your existing backend
-    // at cubalink23-backend.onrender.com
-    
-    const API_BASE_URL = 'https://cubalink23-backend.onrender.com';
-    
-    return {
-        // Flight search API
-        searchFlights: async (searchData) => {
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/flights/search`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(searchData)
-                });
-                return await response.json();
-            } catch (error) {
-                console.error('Error searching flights:', error);
-                throw error;
-            }
-        },
-        
-        // Hotel search API
-        searchHotels: async (searchData) => {
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/hotels/search`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(searchData)
-                });
-                return await response.json();
-            } catch (error) {
-                console.error('Error searching hotels:', error);
-                throw error;
-            }
-        },
-        
-        // Contact form API
-        submitContact: async (contactData) => {
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/contact`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(contactData)
-                });
-                return await response.json();
-            } catch (error) {
-                console.error('Error submitting contact:', error);
-                throw error;
-            }
+        if (notification.parentNode) {
+            notification.remove();
         }
+    }, 5000);
+}
+
+// ===== PRODUCT INTERACTIONS =====
+function addToCart(productId, productName, price) {
+    // Implement cart functionality
+    console.log('Adding to cart:', productId, productName, price);
+    
+    // Get existing cart or create new one
+    let cart = JSON.parse(localStorage.getItem('cubalink23_cart') || '[]');
+    
+    // Add product to cart
+    cart.push({
+        id: productId,
+        name: productName,
+        price: price,
+        quantity: 1,
+        addedAt: new Date().toISOString()
+    });
+    
+    // Save cart
+    localStorage.setItem('cubalink23_cart', JSON.stringify(cart));
+    
+    showNotification(`${productName} agregado al carrito`, 'success');
+}
+
+// ===== UTILITY FUNCTIONS =====
+function formatPrice(price) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    }).format(price);
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
     };
 }
 
-// Initialize API connection
-const api = connectToBackend();
-
-// Export for use in other modules
-window.Cubalink23API = api;
-
-// Authentication Functions
-function checkAuthStatus() {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const token = localStorage.getItem('token');
+// ===== SCROLL EFFECTS =====
+function setupScrollEffects() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
     
-    const loginBtn = document.getElementById('loginBtn');
-    const accountBtn = document.getElementById('accountBtn');
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
     
-    if (token && user.id) {
-        // User is logged in
-        if (loginBtn) loginBtn.style.display = 'none';
-        if (accountBtn) {
-            accountBtn.style.display = 'inline-flex';
-            accountBtn.innerHTML = `<i class="fas fa-user"></i> ${user.name || 'Mi Cuenta'}`;
-        }
-    } else {
-        // User is not logged in
-        if (loginBtn) loginBtn.style.display = 'inline-flex';
-        if (accountBtn) accountBtn.style.display = 'none';
-    }
+    // Observe all cards and sections
+    const elementsToAnimate = document.querySelectorAll('.service-card, .product-card, .car-card, .category-card');
+    elementsToAnimate.forEach(el => observer.observe(el));
 }
 
-// Check auth status on page load
+// ===== LAZY LOADING =====
+function setupLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+}
+
+// ===== INITIALIZE ADDITIONAL FEATURES =====
 document.addEventListener('DOMContentLoaded', function() {
-    checkAuthStatus();
+    setupScrollEffects();
+    setupLazyLoading();
 });
 
-// Logout function
-function logout() {
-    if (confirm('¿Estás seguro de que deseas cerrar sesión?')) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        window.location.reload();
+// ===== API INTEGRATION PLACEHOLDERS =====
+// These functions would be implemented to connect with your backend
+
+async function searchFlights(searchData) {
+    try {
+        // Replace with your actual API endpoint
+        const response = await fetch('/api/flights/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(searchData)
+        });
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Error searching flights:', error);
+        throw error;
     }
 }
 
-// API Integration for Authentication
-const authAPI = {
-    login: async (email, password) => {
-        try {
-            const response = await fetch('https://cubalink23-backend.onrender.com/api/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password })
-            });
-            
-            if (response.ok) {
-                return await response.json();
-            } else {
-                throw new Error('Credenciales inválidas');
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-    
-    register: async (userData) => {
-        try {
-            const response = await fetch('https://cubalink23-backend.onrender.com/api/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userData)
-            });
-            
-            if (response.ok) {
-                return await response.json();
-            } else {
-                throw new Error('Error en el registro');
-            }
-        } catch (error) {
-            throw error;
-        }
-    },
-    
-    updateProfile: async (userData) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await fetch('https://cubalink23-backend.onrender.com/api/user/profile', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(userData)
-            });
-            
-            if (response.ok) {
-                return await response.json();
-            } else {
-                throw new Error('Error actualizando perfil');
-            }
-        } catch (error) {
-            throw error;
-        }
+async function searchHotels(searchData) {
+    try {
+        // Replace with your actual API endpoint
+        const response = await fetch('/api/hotels/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(searchData)
+        });
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Error searching hotels:', error);
+        throw error;
     }
-};
+}
 
-// Export for use in other pages
-window.authAPI = authAPI;
-window.checkAuthStatus = checkAuthStatus;
-window.logout = logout;
+async function searchCars(searchData) {
+    try {
+        // Replace with your actual API endpoint
+        const response = await fetch('/api/cars/search', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(searchData)
+        });
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Error searching cars:', error);
+        throw error;
+    }
+}
+
+// ===== EXPORT FUNCTIONS FOR GLOBAL USE =====
+window.Cubalink23 = {
+    login,
+    logout,
+    addToCart,
+    showNotification,
+    searchFlights,
+    searchHotels,
+    searchCars
+};

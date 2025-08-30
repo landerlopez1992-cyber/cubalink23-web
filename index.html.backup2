@@ -27,10 +27,8 @@
                 <ul class="nav-menu">
                     <li><a href="#home">Inicio</a></li>
                     <li><a href="#services">Servicios</a></li>
-                    <li><a href="#popular-products">Productos Populares</a></li>
-                    <li><a href="#car-catalog">Renta de Autos</a></li>
-                    <li><a href="#store-categories">Categorías</a></li>
                     <li><a href="#travel">Viajes</a></li>
+                    <li><a href="#store">Tienda</a></li>
                     <li><a href="#contact">Contacto</a></li>
                 </ul>
                 
@@ -135,8 +133,8 @@
                     </div>
                     <h3>Renta de Autos</h3>
                     <p>Alquila vehículos en Cuba con las mejores tarifas y cobertura de seguro incluida.</p>
-                    <a href="#car-catalog" class="service-link">
-                        Ver Catálogo
+                    <a href="#travel" class="service-link">
+                        Rentar Auto
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -159,8 +157,8 @@
                     </div>
                     <h3>Compras Online</h3>
                     <p>Compra en Amazon, eBay, Walmart, Home Depot y Shein para enviar a Cuba.</p>
-                    <a href="#store-categories" class="service-link">
-                        Ver Categorías
+                    <a href="#store" class="service-link">
+                        Ir a Tienda
                         <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -175,292 +173,6 @@
                         Ver Paquetes
                         <i class="fas fa-arrow-right"></i>
                     </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Popular Products Section -->
-    <section id="popular-products" class="popular-products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Productos Más Comprados para Cuba</h2>
-                <p>Los productos más populares de Amazon, Walmart y Shein que envían a Cuba</p>
-            </div>
-            
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-badge">Amazon</div>
-                        <i class="fas fa-mobile-alt" style="font-size: 3rem; color: #6b7280;"></i>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">iPhone 14 Pro - 128GB</h3>
-                        <div class="product-price">$999.99</div>
-                        <div class="product-store">
-                            <div class="store-icon amazon">
-                                <i class="fab fa-amazon"></i>
-                            </div>
-                            Amazon
-                        </div>
-                        <a href="#" class="product-btn">
-                            <i class="fas fa-shopping-cart"></i>
-                            Comprar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-badge">Walmart</div>
-                        <i class="fas fa-tshirt" style="font-size: 3rem; color: #6b7280;"></i>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Pack de Ropa Casual</h3>
-                        <div class="product-price">$45.99</div>
-                        <div class="product-store">
-                            <div class="store-icon walmart">
-                                <i class="fas fa-shopping-bag"></i>
-                            </div>
-                            Walmart
-                        </div>
-                        <a href="#" class="product-btn">
-                            <i class="fas fa-shopping-cart"></i>
-                            Comprar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-badge">Shein</div>
-                        <i class="fas fa-tshirt" style="font-size: 3rem; color: #6b7280;"></i>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Vestido de Verano</h3>
-                        <div class="product-price">$29.99</div>
-                        <div class="product-store">
-                            <div class="store-icon shein">
-                                <i class="fas fa-tshirt"></i>
-                            </div>
-                            Shein
-                        </div>
-                        <a href="#" class="product-btn">
-                            <i class="fas fa-shopping-cart"></i>
-                            Comprar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-badge">Amazon</div>
-                        <i class="fas fa-laptop" style="font-size: 3rem; color: #6b7280;"></i>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Laptop HP Pavilion</h3>
-                        <div class="product-price">$599.99</div>
-                        <div class="product-store">
-                            <div class="store-icon amazon">
-                                <i class="fab fa-amazon"></i>
-                            </div>
-                            Amazon
-                        </div>
-                        <a href="#" class="product-btn">
-                            <i class="fas fa-shopping-cart"></i>
-                            Comprar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-badge">Walmart</div>
-                        <i class="fas fa-shoe-prints" style="font-size: 3rem; color: #6b7280;"></i>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Zapatos Deportivos Nike</h3>
-                        <div class="product-price">$89.99</div>
-                        <div class="product-store">
-                            <div class="store-icon walmart">
-                                <i class="fas fa-shopping-bag"></i>
-                            </div>
-                            Walmart
-                        </div>
-                        <a href="#" class="product-btn">
-                            <i class="fas fa-shopping-cart"></i>
-                            Comprar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <div class="product-image">
-                        <div class="product-badge">Shein</div>
-                        <i class="fas fa-tshirt" style="font-size: 3rem; color: #6b7280;"></i>
-                    </div>
-                    <div class="product-content">
-                        <h3 class="product-title">Conjunto Deportivo</h3>
-                        <div class="product-price">$34.99</div>
-                        <div class="product-store">
-                            <div class="store-icon shein">
-                                <i class="fas fa-tshirt"></i>
-                            </div>
-                            Shein
-                        </div>
-                        <a href="#" class="product-btn">
-                            <i class="fas fa-shopping-cart"></i>
-                            Comprar Ahora
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Car Rental Catalog Section -->
-    <section id="car-catalog" class="car-catalog">
-        <div class="container">
-            <div class="section-header">
-                <h2>Catálogo de Autos para Renta</h2>
-                <p>Vehículos disponibles para renta en Cuba</p>
-            </div>
-            
-            <div class="cars-grid">
-                <div class="car-card">
-                    <div class="car-image">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="car-content">
-                        <h3 class="car-title">Toyota Corolla</h3>
-                        <p class="car-type">Sedán Compacto</p>
-                        <div class="car-features">
-                            <span class="car-feature">4 Pasajeros</span>
-                            <span class="car-feature">A/C</span>
-                            <span class="car-feature">Automático</span>
-                        </div>
-                        <a href="#travel" class="car-btn">
-                            <i class="fas fa-car"></i>
-                            Rentar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="car-card">
-                    <div class="car-image">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="car-content">
-                        <h3 class="car-title">Honda CR-V</h3>
-                        <p class="car-type">SUV Compacto</p>
-                        <div class="car-features">
-                            <span class="car-feature">5 Pasajeros</span>
-                            <span class="car-feature">A/C</span>
-                            <span class="car-feature">4x4</span>
-                        </div>
-                        <a href="#travel" class="car-btn">
-                            <i class="fas fa-car"></i>
-                            Rentar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="car-card">
-                    <div class="car-image">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="car-content">
-                        <h3 class="car-title">Hyundai Tucson</h3>
-                        <p class="car-type">SUV Mediano</p>
-                        <div class="car-features">
-                            <span class="car-feature">5 Pasajeros</span>
-                            <span class="car-feature">A/C</span>
-                            <span class="car-feature">Espacioso</span>
-                        </div>
-                        <a href="#travel" class="car-btn">
-                            <i class="fas fa-car"></i>
-                            Rentar Ahora
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="car-card">
-                    <div class="car-image">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="car-content">
-                        <h3 class="car-title">Kia Rio</h3>
-                        <p class="car-type">Sedán Económico</p>
-                        <div class="car-features">
-                            <span class="car-feature">4 Pasajeros</span>
-                            <span class="car-feature">A/C</span>
-                            <span class="car-feature">Económico</span>
-                        </div>
-                        <a href="#travel" class="car-btn">
-                            <i class="fas fa-car"></i>
-                            Rentar Ahora
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Store Categories Section -->
-    <section id="store-categories" class="store-categories">
-        <div class="container">
-            <div class="section-header">
-                <h2>Categorías de Productos</h2>
-                <p>Explora nuestras categorías de productos disponibles</p>
-            </div>
-            
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon" style="background: linear-gradient(135deg, #ff9900, #e47911);">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Electrónicos</h3>
-                    <p>Smartphones, laptops, tablets y más</p>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon" style="background: linear-gradient(135deg, #ff0066, #cc0052);">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h3>Ropa y Moda</h3>
-                    <p>Vestidos, camisetas, zapatos y accesorios</p>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon" style="background: linear-gradient(135deg, #007dc6, #004f9a);">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3>Hogar</h3>
-                    <p>Muebles, decoración y electrodomésticos</p>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon" style="background: linear-gradient(135deg, #fdb927, #ff6600);">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Herramientas</h3>
-                    <p>Herramientas y materiales de construcción</p>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon" style="background: linear-gradient(135deg, #86b817, #a5c63b);">
-                        <i class="fas fa-baby"></i>
-                    </div>
-                    <h3>Bebés y Niños</h3>
-                    <p>Ropa, juguetes y productos para bebés</p>
-                </div>
-                
-                <div class="category-card">
-                    <div class="category-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Videojuegos</h3>
-                    <p>Consolas, juegos y accesorios gaming</p>
                 </div>
             </div>
         </div>
