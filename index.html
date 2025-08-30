@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubalink23 - Agencia de Viajes y Servicios para Cuba</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Cubalink23</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#tienda">Compras</a></li>
+                    <li><a href="#viajes">Viajes</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li class="nav-auth">
+                        <a href="pages/login.html" id="loginBtn" class="auth-btn">Iniciar Sesión</a>
+                        <a href="pages/account.html" id="accountBtn" class="auth-btn account-btn" style="display: none;">
+                            <i class="fas fa-user"></i> Mi Cuenta
+                        </a>
+                    </li>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#tienda">Compras</a></li>
+                    <li><a href="#viajes">Viajes</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Tu Agencia de Viajes Completa para Cuba</h1>
+                <p>Servicios integrales: vuelos, hoteles, renta de autos, recargas telefónicas y compras online. Todo para conectar con Cuba en un solo lugar.</p>
+                <div class="hero-buttons">
+                    <a href="#servicios" class="btn btn-primary">Ver Servicios</a>
+                    <a href="#contacto" class="btn btn-secondary">Contactar</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-card">
+                    <i class="fas fa-plane"></i>
+                    <h3>Viajes a Cuba</h3>
+                    <p>Vuelos, hoteles y autos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestros Servicios</h2>
+                <p>Todo lo que necesitas para tu viaje a Cuba en una sola agencia</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Pasajes Aéreos</h3>
+                    <p>Encuentra los mejores precios en vuelos hacia y desde Cuba. Reservas seguras y confiables.</p>
+                    <a href="#viajes" class="service-btn">Buscar Vuelos</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>Reserva de Hoteles</h3>
+                    <p>Encuentra los mejores hoteles en Cuba con precios especiales y reservas garantizadas.</p>
+                    <a href="#viajes" class="service-btn">Buscar Hoteles</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Renta de Autos</h3>
+                    <p>Alquila vehículos en Cuba con las mejores tarifas y cobertura de seguro incluida.</p>
+                    <a href="#viajes" class="service-btn">Rentar Auto</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Recargas Telefónicas</h3>
+                    <p>Recarga el saldo de tus familiares en Cuba de forma rápida y segura.</p>
+                    <a href="#" class="service-btn">Hacer Recarga</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Compras Online</h3>
+                    <p>Compra en Amazon, eBay, Walmart, Home Depot y Shein para enviar a Cuba.</p>
+                    <a href="#tienda" class="service-btn">Ir a Tienda</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Paquetes Turísticos</h3>
+                    <p>Paquetes completos que incluyen vuelo, hotel y auto. Ahorra tiempo y dinero.</p>
+                    <a href="#viajes" class="service-btn">Ver Paquetes</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Section -->
+    <section id="viajes" class="travel">
+        <div class="container">
+            <div class="section-header">
+                <h2>Servicios de Viaje</h2>
+                <p>Planifica tu viaje perfecto a Cuba con nuestros servicios especializados</p>
+            </div>
+            <div class="travel-grid">
+                <div class="travel-card">
+                    <div class="travel-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <h3>Búsqueda de Vuelos</h3>
+                    <p>Compara precios de todas las aerolíneas que vuelan a Cuba</p>
+                    <form class="flight-search">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Desde:</label>
+                                <input type="text" placeholder="Ciudad de origen">
+                            </div>
+                            <div class="form-group">
+                                <label>Hacia:</label>
+                                <input type="text" placeholder="La Habana, Cuba">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Salida:</label>
+                                <input type="date">
+                            </div>
+                            <div class="form-group">
+                                <label>Regreso:</label>
+                                <input type="date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar Vuelos</button>
+                    </form>
+                </div>
+                
+                <div class="travel-card">
+                    <div class="travel-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>Reserva de Hoteles</h3>
+                    <p>Hoteles en las mejores ubicaciones de Cuba</p>
+                    <form class="hotel-search">
+                        <div class="form-group">
+                            <label>Destino:</label>
+                            <select>
+                                <option>La Habana</option>
+                                <option>Varadero</option>
+                                <option>Trinidad</option>
+                                <option>Santiago de Cuba</option>
+                                <option>Cienfuegos</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Llegada:</label>
+                                <input type="date">
+                            </div>
+                            <div class="form-group">
+                                <label>Salida:</label>
+                                <input type="date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar Hoteles</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="tienda" class="store">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestra Tienda Cubalink23</h2>
+                <p>Compra en las mejores tiendas online y envíalo a Cuba</p>
+            </div>
+            <div class="store-grid">
+                <div class="store-card">
+                    <div class="store-logo amazon">
+                        <i class="fab fa-amazon"></i>
+                    </div>
+                    <h3>Amazon</h3>
+                    <p>Electrónicos, libros, ropa y mucho más</p>
+                    <a href="#" class="store-btn">Comprar en Amazon</a>
+                </div>
+                
+                <div class="store-card">
+                    <div class="store-logo ebay">
+                        <i class="fab fa-ebay"></i>
+                    </div>
+                    <h3>eBay</h3>
+                    <p>Productos únicos y ofertas especiales</p>
+                    <a href="#" class="store-btn">Comprar en eBay</a>
+                </div>
+                
+                <div class="store-card">
+                    <div class="store-logo walmart">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Walmart</h3>
+                    <p>Todo para el hogar y la familia</p>
+                    <a href="#" class="store-btn">Comprar en Walmart</a>
+                </div>
+                
+                <div class="store-card">
+                    <div class="store-logo home-depot">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Home Depot</h3>
+                    <p>Herramientas y materiales de construcción</p>
+                    <a href="#" class="store-btn">Comprar en Home Depot</a>
+                </div>
+                
+                <div class="store-card">
+                    <div class="store-logo shein">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Shein</h3>
+                    <p>Moda y accesorios al mejor precio</p>
+                    <a href="#" class="store-btn">Comprar en Shein</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contáctanos</h2>
+                <p>Estamos aquí para ayudarte con todos tus servicios para Cuba</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@cubalink23.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Dirección</h4>
+                            <p>Miami, Florida, Estados Unidos</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horario de Atención</h4>
+                            <p>Lunes a Domingo: 8:00 AM - 10:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" placeholder="Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Seleccionar servicio</option>
+                            <option value="vuelos">Pasajes Aéreos</option>
+                            <option value="hoteles">Reserva de Hoteles</option>
+                            <option value="autos">Renta de Autos</option>
+                            <option value="recargas">Recargas Telefónicas</option>
+                            <option value="tienda">Compras Online</option>
+                            <option value="paquetes">Paquetes Turísticos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Mensaje" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Cubalink23</h3>
+                    <p>Tu agencia de viajes completa para Cuba. Servicios confiables y profesionales para conectar con tu familia.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Servicios de Viaje</h4>
+                    <ul>
+                        <li><a href="#">Pasajes Aéreos</a></li>
+                        <li><a href="#">Reserva de Hoteles</a></li>
+                        <li><a href="#">Renta de Autos</a></li>
+                        <li><a href="#">Paquetes Turísticos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Otros Servicios</h4>
+                    <ul>
+                        <li><a href="#">Recargas Telefónicas</a></li>
+                        <li><a href="#">Compras Online</a></li>
+                        <li><a href="#">Envíos a Cuba</a></li>
+                        <li><a href="#">Asistencia al Viajero</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@cubalink23.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Miami, Florida</li>
+                        <li><i class="fas fa-clock"></i> 8:00 AM - 10:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Cubalink23 - Agencia de Viajes. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
