@@ -1,9 +1,15 @@
 services:
   - type: web
     name: cubalink23-web
-    env: node
-    buildCommand: npm install
-    startCommand: npm start
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 admin_server.py
     envVars:
       - key: NODE_ENV
         value: production
+      - key: SECRET_KEY
+        value: cubalink23-admin-secret-key-2024
+      - key: SUPABASE_URL
+        value: https://zgqrhzuhrwudckwesybg.supabase.co
+      - key: SUPABASE_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpncXJoenVocnd1ZGNrd2VzeWJnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU3OTI3OTgsImV4cCI6MjA3MTM2ODc5OH0.lUVK99zmOYD7bNTxilJZWHTmYPfZF5YeMJDVUaJ-FsQ
