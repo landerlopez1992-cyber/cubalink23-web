@@ -58,6 +58,26 @@ def admin_login():
     """🔐 Login de administración"""
     return render_template('auth/login.html')
 
+@app.route('/admin/orders')
+def admin_orders():
+    """📦 Gestión de órdenes"""
+    return render_template('admin/orders.html')
+
+@app.route('/admin/products')
+def admin_products():
+    """🛍️ Gestión de productos"""
+    return render_template('admin/products.html')
+
+@app.route('/admin/banners')
+def admin_banners():
+    """🎨 Gestión de banners"""
+    return render_template('admin/banners.html')
+
+@app.route('/admin/users')
+def admin_users():
+    """👥 Gestión de usuarios"""
+    return render_template('admin/users.html')
+
 @app.route('/api/health')
 def health_check():
     """💚 Health check"""
