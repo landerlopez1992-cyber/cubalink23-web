@@ -2,12 +2,12 @@
   "name": "cubalink23-web",
   "version": "1.0.0",
   "description": "Cubalink23 - Agencia de Viajes Web",
-  "main": "server.js",
+  "main": "admin_server.py",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "admin": "python3 admin_server.py",
-    "admin-dev": "python3 admin_server.py"
+    "start": "python3 admin_server.py",
+    "dev": "python3 admin_server.py",
+    "web": "node server.js",
+    "web-dev": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
