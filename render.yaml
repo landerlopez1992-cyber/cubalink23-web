@@ -3,7 +3,7 @@ services:
     name: cubalink23-web
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python admin_server.py
+    startCommand: npm start
     envVars:
       - key: SECRET_KEY
         value: cubalink23-admin-secret-key-2024
