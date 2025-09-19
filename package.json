@@ -4,7 +4,7 @@
   "description": "Cubalink23 - Agencia de Viajes Web",
   "main": "admin_server.py",
   "scripts": {
-    "start": "pip install -r requirements.txt && python3 admin_server.py",
+    "start": "pip install -r requirements.txt --break-system-packages && python3 admin_server.py",
     "dev": "python3 admin_server.py",
     "web": "node server.js",
     "web-dev": "node server.js"
