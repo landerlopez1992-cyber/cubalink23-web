@@ -5,11 +5,33 @@ import os
 import requests
 from datetime import datetime
 import sqlite3
-from supabase_service import supabase_service
-from supabase_storage_service import storage_service
+from supabase_service import SupabaseService
 from auth_routes import require_auth
 from werkzeug.utils import secure_filename
-from database import local_db
+
+# Crear instancia de SupabaseService
+supabase_service = SupabaseService()
+
+# Funciones de compatibilidad para local_db
+class LocalDB:
+    def get_products(self):
+        return supabase_service.get_products()
+    
+    def add_product(self, data):
+        return supabase_service.create_product(data)
+    
+    def update_product(self, product_id, data):
+        return supabase_service.update_product(product_id, data)
+
+# Función de compatibilidad para storage_service
+class StorageService:
+    def upload_image(self, file, bucket_name='product-images', folder='products'):
+        # Función simple para subir imágenes
+        return f"/static/uploads/{file.filename}"
+
+# Crear instancias
+local_db = LocalDB()
+storage_service = StorageService()
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
